@@ -1,0 +1,1 @@
+unknown error: WebDriverError: Input is expected to be a base64-encoded string or a valid element object. {"finderType":"ByValueKey","keyValueString":"employeeId"} has been provided instead when running "execute/sync" with method "POST"

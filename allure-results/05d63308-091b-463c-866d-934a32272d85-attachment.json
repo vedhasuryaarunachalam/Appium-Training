@@ -1,0 +1,9 @@
+{
+  "script": "<script> [20 bytes]",
+  "args": [
+    "eyJmaW5kZXJUeXBlIjoiQnlWYWx1ZUtleSIsImtleVZhbHVlU3RyaW5nIjoicHJvZmlsZUJhY2tCdXR0b24iLCJrZXlWYWx1ZVR5cGUiOiJTdHJpbmcifQ",
+    {
+      "timeout": 5000
+    }
+  ]
+}

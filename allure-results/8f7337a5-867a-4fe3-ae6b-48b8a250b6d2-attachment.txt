@@ -1,0 +1,6 @@
+unknown error: WebDriverError: Cannot execute command waitFor, server response {
+  "isError": true,
+  "response": "Timeout while executing waitFor: TimeoutException after 0:00:06.000000: Future not completed\n#0      Future.timeout.<anonymous closure> (dart:async/future_impl.dart:1042:24)\n<asynchronous suspension>\n#1      FlutterDriverExtension.call (package:flutter_driver/src/extension/extension.dart:423:31)\n<asynchronous suspension>\n#2      BindingBase.registerServiceExtension.<anonymous closure> (package:flutter/src/foundation/binding.dart:960:18)\n<asynchronous suspension>\n#3      _runExtension.<anonymous closure> (dart:developer-patch/developer.dart:138:13)\n<asynchronous suspension>\n",
+  "type": "_extensionType",
+  "method": "ext.flutter.driver"
+} when running "execute/sync" with method "POST"

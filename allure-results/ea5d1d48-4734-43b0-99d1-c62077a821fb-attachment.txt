@@ -1,0 +1,1 @@
+invalid selector: WebDriverError: Locator Strategy 'class name' is not supported for this session when running "elements" with method "POST"
