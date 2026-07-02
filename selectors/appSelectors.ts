@@ -101,6 +101,7 @@ export const selectors = {
   proceedButton : byValueKey("proceedButton"), 
   bankTransfer:byText('Bank Transfer'), 
   uploadDocument: byText('Upload Document'), 
+  gallery:byText('Gallery'), 
   digitalPayment :byText('Digital Payment'), 
   generateQR: byText('GENERATE QR'), 
   otherAmountSwitch: byValueKey('otherAmountSwitch'), 

@@ -21,7 +21,7 @@ class DashboardFilterPage extends BasePage {
     }
 
     async verifyLastMonthFilterApplied() {
-        await driver.back(); // Close the modal
+        await driver.back(); 
         const isFound = await this.waitForDisplayed(this.lastMonthTargetText, 5000);
         expect(isFound).toBe(true);
     }

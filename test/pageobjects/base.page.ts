@@ -27,34 +27,44 @@ export class BasePage {
      * @param selector Flutter element finder locator.
      * @param waitAfterTap Optional pause time after tap in milliseconds to ensure transitions complete (default 0).
      */
-    async tapElement(selector: any, waitAfterTap = 0) {
-        try {
-            await this.waitForDisplayed(selector);
-            await driver.execute('flutter:clickElement', selector, { timeout: 15000 });
-            if (waitAfterTap > 0) {
-                await driver.pause(waitAfterTap);
-            }
-            return true;
-        } catch (err: any) {
-            console.warn(`tapElement failed for selector: ${JSON.stringify(selector)}. Error: ${err.message}`);
-            throw err;
-        }
-    }
+    async tapElement(selector: any, waitAfterTap = 300) {
+    await this.waitForDisplayed(selector);
+
+    await driver.execute('flutter:clickElement', selector, {
+        timeout: 15000,
+    });
+
+    await driver.pause(waitAfterTap);
+
+    return true;
+}
 
     /**
      * @param selector Flutter element finder locator.
      * @param value Text to enter.
      */
     async enterText(selector: any, value: string) {
-        try {
-            await this.waitForDisplayed(selector);
-            await driver.execute('flutter:clickElement', selector, { timeout: 5000 });
-            await driver.pause(500); // Wait for focus/keyboard to appear
-            await driver.execute('flutter:enterText', value);
-            return true;
-        } catch (err: any) {
-            console.warn(`enterText failed for selector: ${JSON.stringify(selector)}. Error: ${err.message}`);
-            throw err;
-        }
+    try {
+        await this.waitForDisplayed(selector);
+
+        await driver.execute('flutter:clickElement', selector, { timeout: 15000 });
+
+        // Wait until Flutter settles
+        await driver.pause(1000);
+
+        // Verify the field is still available
+        await this.waitForDisplayed(selector);
+
+        await driver.execute('flutter:enterText', value);
+
+        await driver.pause(300);
+
+        return true;
+    } catch (err: any) {
+        console.warn(
+            `enterText failed for selector: ${JSON.stringify(selector)}. Error: ${err.message}`
+        );
+        throw err;
     }
+}
 }
