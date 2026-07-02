@@ -1,2 +1,5 @@
 *.apk
 node_modules/
+allure-results/
+allure-report/
+.DS_Store

@@ -1,1 +1,0 @@
-unknown method: WebDriverError: Method has not yet been implemented when running "element/eyJmaW5kZXJUeXBlIjoiQnlWYWx1ZUtleSIsImtleVZhbHVlU3RyaW5nIjoibG9naW5CdXR0b24iLCJrZXlWYWx1ZVR5cGUiOiJTdHJpbmcifQ/displayed" with method "GET"

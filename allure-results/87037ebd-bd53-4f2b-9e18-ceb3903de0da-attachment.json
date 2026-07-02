@@ -1,9 +1,0 @@
-{
-  "script": "<script> [15 bytes]",
-  "args": [
-    {
-      "finderType": "ByValueKey",
-      "keyValueString": "employeeId"
-    }
-  ]
-}
