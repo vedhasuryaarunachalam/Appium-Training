@@ -30,18 +30,20 @@ export const config: WebdriverIO.Config = {
         platformName: 'iOS',
         'appium:automationName': 'Flutter',
         // "any iPhone simulator" — override via env if you like.
-        'appium:deviceName': process.env.IOS_DEVICE || 'iPhone 15',
-        'appium:platformVersion': process.env.IOS_VERSION || '17.5',
+        'appium:deviceName': process.env.IOS_DEVICE || 'iPhone 17',
+        'appium:platformVersion': process.env.IOS_VERSION || '26.5',
         // Path to the iOS *simulator* .app build (see prerequisites above).
-        'appium:app': process.env.IOS_APP,
+        'appium:app': process.env.IOS_APP || `${process.cwd()}/app/Runner.app`,
         'appium:autoAcceptAlerts': true,
     }],
 
     logLevel: 'info',
     bail: 0,
     waitforTimeout: 10000,
-    connectionRetryTimeout: 120000,
-    connectionRetryCount: 3,
+    // iOS session creation builds WebDriverAgent on first run (several minutes),
+    // so allow a generous timeout for the initial POST /session.
+    connectionRetryTimeout: 360000,
+    connectionRetryCount: 1,
 
     services: ['appium'],
     framework: 'mocha',
