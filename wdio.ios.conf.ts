@@ -18,9 +18,9 @@ export const config: WebdriverIO.Config = {
 
     port: 4723,
 
-    // Only the SideBar spec, on its own.
+    // Only the BM Loan Resubmission spec, on its own.
     specs: [
-        './test/spec/SideBar.e2e.ts'
+        './test/spec/LoanResubmission.e2e.ts'
     ],
     exclude: [],
 
@@ -30,7 +30,7 @@ export const config: WebdriverIO.Config = {
         platformName: 'iOS',
         'appium:automationName': 'Flutter',
         // "any iPhone simulator" — override via env if you like.
-        'appium:deviceName': process.env.IOS_DEVICE || 'iPhone 17',
+        'appium:deviceName': process.env.IOS_DEVICE || 'iPhone 15',
         'appium:platformVersion': process.env.IOS_VERSION || '26.5',
         // Path to the iOS *simulator* .app build (see prerequisites above).
         'appium:app': process.env.IOS_APP || `${process.cwd()}/app/Runner.app`,
@@ -52,7 +52,9 @@ export const config: WebdriverIO.Config = {
 
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        // The resubmission wizard drives several native camera captures, so the
+        // single test needs a generous timeout.
+        timeout: 300000
     },
 
     afterTest: async function (_test, _context, { passed }) {

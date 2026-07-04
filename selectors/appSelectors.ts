@@ -167,6 +167,12 @@ export const selectors = {
   familyMemberEducation:byValueKey('familyMemberEducation'), 
   familyMemberOccupation:byValueKey('familyMemberOccupation'), 
   familyMemberOccupationDetails:byValueKey('familyMemberOccupationDetails'), 
-  aadhaarOtpInput: byValueKey('aadhaarOtpInput'), 
- 
+  aadhaarOtpInput: byValueKey('aadhaarOtpInput'),
+
+  // --- BM Loan Resubmission flow ---
+  // Dashboard tile text confirmed via native page source: "ReSubmitted".
+  resubmittedLoans: byText('ReSubmitted'),
+  basicEligibilityCheck: byText('BASIC ELIGIBILITY CHECK'),
+  loanSummary: byText('LOAN SUMMARY'),
+
 }

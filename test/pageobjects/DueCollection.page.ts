@@ -145,24 +145,7 @@ class DueCollectionPage extends BasePage {
         await this.tapElement(this.generateQrBtn, 1000);
     }
 
-    
-    private async tapNativeXY(x: number, y: number, waitAfter = 1500) {
-        await driver.switchContext('NATIVE_APP');
-        try {
-            await driver
-                .action('pointer', { parameters: { pointerType: 'touch' } })
-                .move({ x, y })
-                .down()
-                .pause(100)
-                .up()
-                .perform();
-        } finally {
-            await driver.switchContext('FLUTTER');
-        }
-        await driver.pause(waitAfter);
-    }
 
-    
     private async swipeUp() {
         await driver.switchContext('NATIVE_APP');
         try {
@@ -264,12 +247,11 @@ class DueCollectionPage extends BasePage {
     }
 
     async confirmWalletPayment() {
-        
+       
         await this.tapNativeByLabel('CONFIRM', 2500);
-        
-        await driver.pause(4000);
-        await this.tapNativeXY(991, 236, 2500); 
-        await this.tapNativeXY(991, 236, 2500); 
+        await this.waitForLoadingToFinish();
+        await this.clickConfirmPaymentDetails();
+
         const backOnDashboard = await this.waitForDisplayed(byText('Welcome Back!'), 15000);
         expect(backOnDashboard).toBe(true);
     }

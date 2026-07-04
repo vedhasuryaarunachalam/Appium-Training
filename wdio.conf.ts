@@ -28,7 +28,7 @@ export const config: WebdriverIO.Config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './test/spec/LoanResubmission.e2e.ts'
     ],
     //
     // ============
@@ -59,11 +59,13 @@ export const config: WebdriverIO.Config = {
     'appium:deviceName': 'Pixel 8a',
     'appium:platformVersion': '15',
 
-    // IMPORTANT: Use the AVD ID, not necessarily the display name
     'appium:avd': 'Pixel_8a',
 
     'appium:app': process.env.APK_PATH || './app/app-staging-debug 4.apk',
     'appium:autoGrantPermissions': true,
+    
+    'appium:adbExecTimeout': 60000,
+    'appium:ignoreHiddenApiPolicyError': true,
 }],
 
     //
