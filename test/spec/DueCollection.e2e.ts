@@ -8,6 +8,8 @@ describe('Due Collection Test', () => {
     });
 
     
+
+    
     async function navigateToParticularDue(dueId: string) {
             await DueCollectionPage.clickDueCollectionInDashboard();
             await DueCollectionPage.clickDueCollectionBottom();
@@ -18,6 +20,7 @@ describe('Due Collection Test', () => {
         }
 
     it('Verify Due collection - cash with other amount', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('cash');
         await DueCollectionPage.clickOtherAmountAndFill('500');
@@ -30,6 +33,7 @@ describe('Due Collection Test', () => {
    
 
    it('Verify Due collection - cash with Normal', async () => {
+    await LoginPage.login(testData.username, testData.password);
            await navigateToParticularDue(testData.dueId);
    
            await DueCollectionPage.selectModeOfPayment('cash');
@@ -40,6 +44,7 @@ describe('Due Collection Test', () => {
        });
 
     it('Verify Due Collection Digital With other amount', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('digital');
         await DueCollectionPage.clickOtherAmountAndFill('500');
@@ -51,6 +56,7 @@ describe('Due Collection Test', () => {
     
 
     it('Verify Due Collection Digital With normal flow', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('digital');
         await DueCollectionPage.clickConfirmTwo();
@@ -59,12 +65,14 @@ describe('Due Collection Test', () => {
         await DueCollectionPage.verifyPaymentSuccess();
     });
     it('Verify Due collection - cash with Wallet', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('cash');
         await DueCollectionPage.clickUseWallet();
         await DueCollectionPage.confirmWalletPayment();
     });
     it('Verify Due Collection Digital With wallet', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('digital');
         await DueCollectionPage.clickUseWallet();
@@ -72,6 +80,7 @@ describe('Due Collection Test', () => {
     });
 
     it('Verify Due Collection Bank Transfer With other amount', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('bank');
         await DueCollectionPage.uploadDocumentViaCamera();
@@ -85,6 +94,7 @@ describe('Due Collection Test', () => {
     
 
     it('Verify Due Collection Bank Transfer With normal flow', async () => {
+        await LoginPage.login(testData.username, testData.password);
         await navigateToParticularDue(testData.dueId);
         await DueCollectionPage.selectModeOfPayment('bank');
         await DueCollectionPage.uploadDocumentViaCamera();
@@ -95,6 +105,7 @@ describe('Due Collection Test', () => {
     });
 
     it('Verify Due collection - Deposit amount', async () => {
+        await LoginPage.login(testData.username, testData.password);
         
         await DueCollectionPage.clickDueCollectionInDashboard();
         await DueCollectionPage.clickDepositAmountOption();

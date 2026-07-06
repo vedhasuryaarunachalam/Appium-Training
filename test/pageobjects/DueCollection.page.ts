@@ -20,7 +20,7 @@ class DueCollectionPage extends BasePage {
 
     private readonly depositAmountTile = selectors.depositAmountText;
     private readonly submitBtn = selectors.submitButton;
-    
+    private readonly closeIcon = selectors.closeIcon;
 
     async clickDueCollectionInDashboard() {
         await this.tapElement(this.dueCollectionDashboardTile, 1000);
@@ -63,6 +63,23 @@ class DueCollectionPage extends BasePage {
             await this.tapElement(this.modeBankTransfer, 500);
         }
     }
+    private async swipeUp() {
+    await driver.switchContext('NATIVE_APP');
+
+    try {
+        await driver.execute('mobile: scrollGesture', {
+            left: 100,
+            top: 100,
+            width: 800,
+            height: 1600,
+            direction: 'down',
+            percent: 0.8
+        });
+    } finally {
+        await driver.switchContext('FLUTTER');
+    }
+}
+
 
     async clickOtherAmountAndFill(amount: string) {
         await this.tapElement(this.otherAmountSwitch, 1000);
@@ -92,7 +109,6 @@ class DueCollectionPage extends BasePage {
         await driver.switchContext('FLUTTER');
         await driver.pause(500);
     }
-
     async clickUseWallet() {
         
         await this.tapElement(this.walletSwitch, 2000);
@@ -145,22 +161,6 @@ class DueCollectionPage extends BasePage {
         await this.tapElement(this.generateQrBtn, 1000);
     }
 
-
-    private async swipeUp() {
-        await driver.switchContext('NATIVE_APP');
-        try {
-            await driver
-                .action('pointer', { parameters: { pointerType: 'touch' } })
-                .move({ x: 540, y: 1700 })
-                .down()
-                .pause(100)
-                .move({ duration: 500, x: 540, y: 800 })
-                .up()
-                .perform();
-        } finally {
-            await driver.switchContext('FLUTTER');
-        }
-    }
 
     
     private async confirmCropTick() {
@@ -238,7 +238,7 @@ class DueCollectionPage extends BasePage {
     }
 
     async clickDepositSubmit() {
-        await this.tapElement(this.submitBtn, 1000);
+        await this.tapElement(this.submitBtn, 3000);
     }
 
     async verifyPaymentSuccess() {
@@ -247,10 +247,21 @@ class DueCollectionPage extends BasePage {
     }
 
     async confirmWalletPayment() {
-       
+
         await this.tapNativeByLabel('CONFIRM', 2500);
         await this.waitForLoadingToFinish();
         await this.clickConfirmPaymentDetails();
+
+        
+        for (let attempt = 0; attempt < 3; attempt++) {
+            try {
+                await this.waitForDisplayed(this.closeIcon, 3000);
+            } catch (e) {
+                break; 
+            }
+            await driver.execute('flutter:clickElement', this.closeIcon, { timeout: 15000 });
+            await driver.pause(500);
+        }
 
         const backOnDashboard = await this.waitForDisplayed(byText('Welcome Back!'), 15000);
         expect(backOnDashboard).toBe(true);

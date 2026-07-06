@@ -42,6 +42,11 @@ class LoginPage extends BasePage {
         const isFound = await this.waitForDisplayed(this.menuIcon, 10000);
         expect(isFound).toBe(true);
     }
+
+    async signOut() {
+        await this.tapElement(this.menuIcon, 1000);
+        await this.tapElement(selectors.signOut, 1000);
+    }
 }
 
 export default new LoginPage();
